@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aprendendo Js</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        text-align: center;
+        background-color: whitesmoke;
+      }
+      .calc {
+        display: inline-block;
+      }
+      .btns {
+        float: left;
+        margin-left: 3px;
+      }
+      input {
+        margin-bottom: 10px;
+      }
+
+      .opt {
+        
+        border: 2px solid black;
+        background-color: rgba(0, 255, 255, 0.198);
+        display: inline-block;
+        padding: 7px;
+        margin-right: 20px;
+      }
+      .opt:hover {
+        border: 3px solid red;
+        background-color: rgba(0, 255, 255, 0.198);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!--cabeçalho-->
+      <nav>
+        <div onclick="opt1()" id="btnCalculo" class="opt opt1">
+          Quantos litros tem meu aquário?
+        </div>
+        <div onclick="opt2()" id="btnLimpeza" class="opt opt2">
+          Como lavar meu aquário?
+        </div>
+      </nav>
+    </header>
+    <section id="calcLitros">
+      <h1>Calculadora de litros de água do seu aquário</h1>
+      <div class="calc">
+        <form action="">
+          <input
+            id="lMaior"
+            type="number"
+            placeholder="Digite aqui o lado maior"
+          />
+          cm
+          <br />
+          <input
+            id="lMenor"
+            type="number"
+            placeholder="Digite aqui o lado menor"
+          />
+          cm
+          <br />
+          <input id="altura" type="number" placeholder="Digite aqui a altura" />
+          cm
+          <br />
+          <div class="btns">
+            <input
+              onclick="calculadora()"
+              id="btnCalcular"
+              type="button"
+              value="calcular"
+            />
+            <input onclick="resetar()" type="reset" value="limpar campos" />
+            <br />
+          </div>
+        </form>
+      </div>
+      <h2 id="lblResultado">Seu aquário possui: ?? litros de água</h2>
+    </section>
+
+    <section id="comoLavarAquario">
+      <h1>Como lavar meu aquário?</h1>
+
+      1º Retire um pouco de água do aquário e reserve em um local
+      <br />
+      2º retire os peixes e os coloque na água reservada em 1º
+      <br />
+      3º lave os restante com água
+    </section>
+
+    <script>
+      let s2 = document.getElementById("comoLavarAquario");
+      s2.style.display = "none";
+      btnCalculo.style.backgroundColor = "blue";
+      btnCalculo.style.color = "white";
+
+      function opt1() {
+        let s1 = document.getElementById("calcLitros");
+        let s2 = document.getElementById("comoLavarAquario");
+        let btnLimpeza = document.getElementById("btnLimpeza");
+        let btnCalculo = document.getElementById("btnCalculo");
+        s1.style.display = "initial";
+        s2.style.display = "none";
+        btnLimpeza.style.backgroundColor = "rgba(0, 255, 255, 0.198) ";
+        btnLimpeza.style.color = "black";
+        btnCalculo.style.backgroundColor = "blue";
+        btnCalculo.style.color = "white";
+      }
+      function opt2() {
+        let s1 = document.getElementById("calcLitros");
+        let s2 = document.getElementById("comoLavarAquario");
+        let btnLimpeza = document.getElementById("btnLimpeza");
+        let btnCalculo = document.getElementById("btnCalculo");
+        s1.style.display = "none";
+        s2.style.display = "initial";
+        btnLimpeza.style.backgroundColor = "blue";
+        btnLimpeza.style.color = "white";
+        btnCalculo.style.backgroundColor = "rgba(0, 255, 255, 0.198)";
+        btnCalculo.style.color = "black";
+      }
+      function resetar() {
+        let lblResultado = document.getElementById("lblResultado");
+        lblResultado.innerHTML = "Seu aquário possui: ?? litros de água";
+      }
+      function calculadora() {
+        function calcular(lMaior, lMenor, altura) {
+          return (lMaior * lMenor * altura) / 1000;
+        }
+        let lMaior = parseFloat(document.getElementById("lMaior").value);
+        let lMenor = parseFloat(document.getElementById("lMenor").value);
+        let altura = parseFloat(document.getElementById("altura").value);
+        let btnCalcular = document.getElementById("btnCalcular");
+        let lblResultado = document.getElementById("lblResultado");
+
+        lblResultado.innerHTML =
+          "Seu aquário possui: " +
+          calcular(lMaior, lMenor, altura) +
+          " litros de água";
+      }
+    </script>
+  </body>
+</html>
